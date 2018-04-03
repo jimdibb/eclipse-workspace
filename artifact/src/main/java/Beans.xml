@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="Point10" class="com.example.pkg.Point">
+		<property name="x" value="10" />
+		<property name="y" value="10" />
+	</bean>
+	<bean id="Point3d" class="com.example.pkg.Point3d">
+		<property name="x" value="20" />
+		<property name="y" value="30" />
+		<property name="z" value="40" />
+	</bean>
+<!-- 	<bean id="zebra" class="com.example.pkg.animal">
+		<property name="Color">
+			<bean class="com.example.pkg.color">
+				<constructor-arg value="BlackAndWhite" />
+				<constructor-arg value="56" />
+			</bean>
+		</property>
+		<property name="Size">
+			<bean class="com.example.pkg.size">
+				<constructor-arg index= "0" value="20.5" />
+				<constructor-arg index = "1" value  ="56" />
+			</bean>
+		</property>
+		<property name="validator">
+			<idref bean="Point10"/>
+		</property>
+	</bean> -->
+
+	<bean id="zebra1" class="com.example.pkg.animal" autowire="constructor" scope="prototype">
+		
+		
+		<property name="validator">
+			<idref bean="Point10"/>
+		</property>
+		<property name="Names">
+			<set>
+				<value>zebra1</value>
+				<value>bobby</value>
+			</set>
+		</property>
+		<property name="MapNames">
+			<map>
+				<entry key="0" value="zero"/>
+				<entry key="1" value="one"/>
+				
+			</map>
+		</property>
+		
+	</bean>
+	
+	<bean class="com.example.pkg.color">
+		<constructor-arg value="BlackAndWhite" />
+		<constructor-arg value="56" />
+	</bean>
+	<bean class="com.example.pkg.size">
+		<constructor-arg index= "0" value="20.5" />
+		<constructor-arg index = "1" value  ="56" />
+	</bean>
+
+	<alias name="zebra1" alias="zebra"/>
+	<alias name="zebra1" alias="bobby"/>
+	
+	<bean id = "validatorBean" class="com.example.pkg.BeanValidator">
+		<property name = "animal1">
+			<idref bean="zebra1"/>
+		</property>
+		<property name = "animal2"> 
+			<idref bean="zebra"/>
+		</property>
+	</bean>
+
+</beans>
