@@ -2,6 +2,7 @@ package webgroup.webartifact;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Hello world!
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class App 
 {
 	@RequestMapping("/hello")
-    public static String helloWorld( String[] args )
+    public static ModelAndView helloWorld()
     {
-        return "WEB-INF/helloWorld.jsp";
+		ModelAndView mav = new ModelAndView("helloWorld");
+        mav.addObject("message", "Java is so weird");
+        return mav;
     }
 }
